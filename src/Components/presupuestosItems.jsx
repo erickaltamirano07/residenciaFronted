@@ -4,10 +4,10 @@ import { PencilSquareIcon, TrashIcon } from "@heroicons/react/16/solid";
 import { NavLink } from "react-router-dom";
 
 function PresupuestosItems({ item }) {
-  const { presupuestos } = useContext(ResidenciaContext);
+  const { presupuestos, presupuestoHome } = useContext(ResidenciaContext);
 
   const handleClick = (item) => {
-    presupuestos.removePresupuesto(item);
+    presupuestos.removePresupuesto(item, presupuestoHome);
   };
 
   return (

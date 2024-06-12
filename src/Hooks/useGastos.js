@@ -36,7 +36,7 @@ const useGastos = () => {
     }
 
 
-    const removeGasto = (payload) => {
+    const removeGasto = (payload, presupuesto, contexto) => {
 
          const requestOptions = {
             method: 'POST',
@@ -47,12 +47,14 @@ const useGastos = () => {
             .then(data => {                
                     const newItem = [...gastos];
                     const x = newItem.filter(item => item.id !== payload.id);
-                setGastos(x);                
+                setGastos(x);
+                presupuesto.getPresupuesto();
+                contexto.actualizarGastos();
                 alert("Elemento eliminado")
             });       
     }
 
-    const postGasto = (payload, presupuesto) => {
+    const postGasto = (payload, presupuesto, contexto) => {
         const fecha = payload.Fecha.split("-");
      
         const dia = fecha[2];
@@ -82,12 +84,13 @@ const useGastos = () => {
                     newItem.push(data);
                 setGastos(newItem);
                 presupuesto.getPresupuesto();
+                contexto.actualizarGastos();
             });
         
         
     }
 
-    const putGasto = (id, payload, presupuesto) => {     
+    const putGasto = (id, payload, presupuesto, contexto) => {     
         
         const fecha = payload.Fecha.split("-");     
         const dia = fecha[2];
@@ -122,6 +125,7 @@ const useGastos = () => {
                 newItems[gastoIndex].valor = data.valor;
                 setGastos(newItems);
                 presupuesto.getPresupuesto();
+                contexto.actualizarGastos();
                 alert("Elemento modificado")
             });
         

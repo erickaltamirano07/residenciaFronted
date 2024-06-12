@@ -9,7 +9,7 @@ function ChartDoughnut(props) {
   const [valores, setValores] = useState([
     props.multasTotal,
     gastosHome.totalGastos,
-    1000,
+    props.cuotasTotal,
   ]);
 
   const options = {

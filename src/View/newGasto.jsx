@@ -4,11 +4,11 @@ import { FormGasto } from "../Components/formGasto";
 
 function NewGasto() {
   const { gastos } = useContext(ResidenciaContext);
-  const { presupuestos } = useContext(ResidenciaContext);
+  const { presupuestos, gastosHome } = useContext(ResidenciaContext);
   return (
     <FormGasto
       label="Registar Gasto"
-      submitEvent={(text) => gastos.postGasto(text, presupuestos)}
+      submitEvent={(text) => gastos.postGasto(text, presupuestos, gastosHome)}
     />
   );
 }

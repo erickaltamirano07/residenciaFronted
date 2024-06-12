@@ -5,7 +5,8 @@ import { ChartDoughnut } from "../Components/chartDoughnut";
 import { ResidenciaContext } from "../Context/residenciaContext";
 
 function Dashboard() {
-  const { homes, gastosHome, multasHome } = useContext(ResidenciaContext);
+  const { presupuestoHome, gastosHome, multasHome, cuotasHome } =
+    useContext(ResidenciaContext);
 
   return (
     <Layout>
@@ -13,7 +14,9 @@ function Dashboard() {
         <div className="w-1/5  bg-green-600 rounded-3xl shadow-2xl">
           <div className="p-4 flex justify-around items-center h-full text-center">
             <p className="text-white font-bold text-lg">Cuotas</p>
-            <p className="text-white font-bold text-lg">$45671</p>
+            <p className="text-white font-bold text-lg">
+              ${cuotasHome.totalCuotas}
+            </p>
           </div>
         </div>
         <div className="w-1/5  bg-red-600 rounded-3xl shadow-2xl">
@@ -31,28 +34,29 @@ function Dashboard() {
           </div>
         </div>
         <div className="w-1/5  bg-blue-500 rounded-3xl shadow-2xl">
-          <div className="grid grid-flow-row h-full">
-            <div className="p-2 flex justify-around items-center h-full text-center">
-              <p className="text-white font-bold text-lg">Presupuesto</p>
-              <p className="text-white font-bold text-base">
-                ${/*homes.presupuestoAnio[0].total*/}
-              </p>
-            </div>
-            <div className="p-2 flex justify-around items-center h-full text-center ">
-              <p className="text-white font-bold text-lg">Parcial</p>
-              <p className="text-white font-bold text-base">
-                ${/*homes.presupuestoAnio[0].parcial*/}
-              </p>
-            </div>
+          <div className="p-4 flex justify-around items-center h-full text-center">
+            <p className="text-white font-bold text-lg">Presupuesto</p>
+            <p className="text-white font-bold text-lg">
+              $
+              {presupuestoHome.presupuesto.length > 0
+                ? presupuestoHome.presupuesto[0].total
+                : 0}
+            </p>
           </div>
         </div>
       </div>
       <div className="grid grid-cols-12 grid-rows-12 h-3/4">
         <div className="col-start-2 col-end-8 bg-white row-start-2 row-end-13 shadow-2xl rounded-lg content-center">
-          <ChartLine multasMeses={multasHome.multasMeses} />
+          <ChartLine
+            multasMeses={multasHome.multasMeses}
+            cuotasMeses={cuotasHome.cuotasLine}
+          />
         </div>
         <div className="col-start-9 col-end-12 bg-white row-start-2 row-end-13 shadow-2xl rounded-lg">
-          <ChartDoughnut multasTotal={multasHome.multa} />
+          <ChartDoughnut
+            multasTotal={multasHome.multa}
+            cuotasTotal={cuotasHome.totalCuotas}
+          />
         </div>
       </div>
     </Layout>

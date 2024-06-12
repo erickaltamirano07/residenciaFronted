@@ -4,7 +4,7 @@ import { FormMulta } from "../Components/formMultas";
 import { useParams } from "react-router-dom";
 
 function EditMulta() {
-  const { multas } = useContext(ResidenciaContext);
+  const { multas, multasHome } = useContext(ResidenciaContext);
   const { id } = useParams();
 
   let multa = [multas.multas.find((element) => element.id === parseInt(id))];
@@ -18,7 +18,7 @@ function EditMulta() {
       motivo={multa.motivo}
       pagado={multa.pagado}
       propietario={multa.propietario}
-      submitEvent={(text) => multas.putMulta(parseInt(id), text)}
+      submitEvent={(text) => multas.putMulta(parseInt(id), text, multasHome)}
     />
   );
 }

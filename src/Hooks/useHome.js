@@ -1,76 +1,26 @@
 import { useState, useEffect } from "react";
 
 const useHome = () => { 
+  const [slides, setSlides] = useState([]);
 
-  const uri = "http://localhost:8762/ms-presupuesto/presupuesto";
-  const uriMulta = 'http://localhost:8762/ms-multa/multa';
-     const [presupuestoAnio, setPresupuestoAnio] = useState([
-    {
-      id: 0,
-      total: 0,
-      parcial: 0,
-      anio: "0",
-    },
-     ]);
-  
-  const [multaAnio, setMultaAnio] = useState(0);
+      
+  useEffect(() => {
     
-     useEffect(() => {
-    var y = new Date().getFullYear();
+    setSlides([
+      "https://lh3.googleusercontent.com/pw/AP1GczMHP7rLtfnPAu7TxbJ_1do3eO4VFkVPJN5CLy7RQxPM3APpaHwP54T1bz_S761705LrBGF4lNDJFll2qnWCQZ7X5GARsg-k-Zm5IQtVY4HdGxrAYysSV4AD7qV7BiEqlpcQazAjmFjfZwF85e6k6EsZIGe6pKZohZUYXluwGtajTv44uhT5AD7OzUJ2RBnzbbwpI-fVRM64QkO0pICDo7mRHd_5O7d3ZQ44D5MNvh3ZwMAmobWLacOLJNyApFsAzjBp0xYXgOX9WmWXx9l_P1CJWuh8h81veL_SaM9uSgG-MtoUCd7xwfQSjmx6QORRF43q3ouiPlc9yzZFlwJ78lW0Jlg5Z1AaQsfdYxmwAJc_f4Z8VPOCvRtRniOgKWZUDV6aeg1LJULAAmzQNGJ52OOVGlUPCFUA7_qThYLDLhX7HniT7MfA1D7SEr-8u-o2uHzg465_xBBof2AvSCpX4B_8zpI2rQ_dEM0dMxGWYM2ZrP-P3jJ6Y6MsrZzSBzmGNuPAKgyfaNS1-cjlgh8qRRCC89lRwLEUZVKqtBEuk9DRgFkX5QfMM-Gd6gT67Ilz6otfZdmsZTkLeTQVqFpGuWNqckAPrSr9mO9-OqAZ6sGuJZm1_jv1RBab3-84eLYRtnXiF3jF95mofoRBJalTlTOAbfF0nt7IjbIgaAcG3mkQRRSjiMcF7dIj6K9qBk0IaUVdogfq1SW3E-lFsh827t-kzDZRKzr6cqGsoCNFWzs-CUaosnNwYJNDzQP75AvYscLxCWqpiME7fvVTQS8xYxrB7KJ96MyLHBopRXPXSjHD_s0MsbSi-vg3KOJ_N298KhVZS404EF1FyxG7SUQ5yaJ8Al1IcmTOX1zdhnCkPWMiCjNF1cKykPtJmVFKEBD59aYi6tsa33ub1lKq9DO80PhuLSD48vRcclBBWNW0t-Yr3uU34AH3NFDGGezo-p8CYf_8LAinIYvW8FSFC0CDRmE49VzwQrg=w1292-h631-s-no-gm?authuser=0",
+      "https://lh3.googleusercontent.com/pw/AP1GczMeCVVgd7pztjFld2-Z1P9ME_L4or6GxZFrjgnNbxQYiX5xMqRJ3g4GvOvOCH-JQ6Aqoea_QV-ytkvx0XS8fYzR3zXY5jRzVo3QQK2HQ9LzLWF7EM9BlhieNo75-jnUj8lvaHiQ2jJZ3ehW7sez-XUUm7LL2Vad8jcEcYEUnIpODgVQrlER2dDcbGGgKOJ0vWJFtbLkLm4__Ca0K34zSOeraCwPlbo8zH0ScnIk96KkC3YeJLMZfFyh984o-F5VGhP8KKCilV0-7fDo9iW5n8ZOzxt6Tmslqwa0LACHv_n4Tuu8p1Fb3gBu8v3oHmwdPDYLVZr9uPmQRHl1Ak_9unNPGiIg65kFT1x9TTVfwmHYEeZftsLzmgEV_q1S2HjxSW-JGX0UoK1heNPY1i8qvAh58t3MJi1MxE_9j2IlpOPYbqOzhpqO6ZLIzjqvYaCHGV_M9B-RXykEFz8V52i7FhN-RtIigCwmBX6G6b4NWggw06IBvn7YGHASoU3fRMr_XJTHPUMAUXnGLen4IICLet-CH41mb-6wqgqYXvbQwarereZ7bKfNDSHNtle7Y6qCqsR90R5dmjD5uPQhHs07qYbrH2LjlGfnH06y2qKP9lJvg5i2Th1ZyNtIInwYLAYWehACpvYa1VGs3okVtM2HA58O6BCwgYor6zBPaUhiP-lSeb2xn1TFwgLqnEoZj6iQZVQu4lkk-KW-S9Czzm2ogJpSHdH4rjWhxBR1c6gtTI5urDArvTZ12sOCzprzbGbmkApV563yH1tH3uAvF8t1SbfKoAkUB7ZvyQ_vRc6DOLUe0Hobdd_KrB_CDLEz48LNSKkdVaBoWUby4amh_El39gsLkZQm1wlH9d0hOHwFVI3mqfERvveVQUtbwpf7bkl0ht9T3ErEyjfGTpOKHdkNS0Mw7_kjPCFsyiTENr6KCF4BMeGLx6fMw8Q5oSwJjcPjS8C9phKSM0VNg3eHA-tvD4gyq34QffQ=w870-h400-s-no-gm?authuser=0"
 
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        targetMethod: "GET",
-        queryParams: {
-          anio: [y.toString()],
-        },
-      }),
-    };
 
-    fetch(uri, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        setPresupuestoAnio(data);
-      });
+    ]);   
 
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-     }, []);
-  
-   useEffect(() => {
-     var year = new Date().getFullYear();
-     var elementos = [];
 
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        targetMethod: "GET"
-      }),
-    };
-
-    fetch(uriMulta, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        data.forEach(element => {
-          const t = element.fecha.split("-");  
-          if(t[0]==year.toString() && element.pagado==true){
-            elementos.push(element.total)
-            }
-          });        
-        setMultaAnio(elementos.reduce((a, b) => a+ b, 0));
-        
-      });
-
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-     }, []);
+     }, []);     
+     
   
   
     
     return {
-      presupuestoAnio,
-      multaAnio
+      slides
     }
 }
 

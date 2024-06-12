@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { FormGasto } from "../Components/formGasto";
 
 function EditGasto() {
-  const { gastos } = useContext(ResidenciaContext);
+  const { gastos, gastosHome } = useContext(ResidenciaContext);
   const { presupuestos } = useContext(ResidenciaContext);
   const { id } = useParams();
 
@@ -20,7 +20,15 @@ function EditGasto() {
       dia={gasto.dia}
       mes={gasto.mes}
       anio={gasto.anio}
-      submitEvent={(text) => gastos.putGasto(parseInt(id), text, presupuestos)}
+      submitEvent={(text) =>
+        gastos.putGasto(
+          parseInt(id),
+          text,
+          presupuestos,
+          gastosHome,
+          gastosHome
+        )
+      }
     />
   );
 }

@@ -91,9 +91,27 @@ const useHomeGastos = () => {
       totalGastos = 0;
   }
 
+  const actualizarGastos = () => {
+    var y = new Date().getFullYear();
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        targetMethod: "GET",
+      }),
+    };
+
+    fetch(uri, requestOptions)
+      .then((response) => response.json())
+      .then((data) => setGastos(data.filter((x) => x.anio == y)));
+    
+  }
+
   return {
       gastosLine,
-      totalGastos
+    totalGastos,
+      actualizarGastos
   };
 };
 

@@ -37,7 +37,7 @@ const useMultas=()=>{
     }
 
 
-    const removeMultas = (payload) => {
+    const removeMultas = (payload, contexto) => {
 
          const requestOptions = {
             method: 'POST',
@@ -49,11 +49,12 @@ const useMultas=()=>{
                     const newItem = [...multas];
                     const x = newItem.filter(item => item.id !== payload.id);
                 setMultas(x);
+                contexto.actualizarMultas();
                 alert("Elemento eliminado")
             });       
     }
 
-    const postMulta = (payload) => {        
+    const postMulta = (payload, contexto) => {        
         
         const requestOptions = {
             method: 'POST',
@@ -76,11 +77,11 @@ const useMultas=()=>{
                     let newItem=[...multas];
                     newItem.push(data);
                     setMultas(newItem);
-                    console.log(data)
+                    contexto.actualizarMultas();
             });        
     }
 
-    const putMulta = (id, payload) => {       
+    const putMulta = (id, payload, contexto) => {       
         
         const requestOptions = {
             method: 'POST',
@@ -108,7 +109,8 @@ const useMultas=()=>{
                 newItems[multaIndex].pagado = data.pagado;
                 newItems[multaIndex].propietario = data.propietario;
                 setMultas(newItems);
-                alert("Elemento modificado")
+                contexto.actualizarMultas();
+                alert("Elemento modificado");
             });        
     }
 

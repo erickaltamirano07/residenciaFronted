@@ -9,8 +9,8 @@ function FormGasto(props) {
   const [anio, setAnio] = useState(props.anio || "");
   const [motivo, setMotivo] = useState(props.motivo || "");
   const [valor, setValor] = useState(props.valor || "");
-  const date = dia == "" ? "" : anio + "-" + mes + "-" + dia;
-  console.log(date);
+  const diaTemp = parseInt(dia) > 9 ? dia : "0" + dia;
+  const date = dia == "" ? "" : anio + "-" + mes + "-" + diaTemp;
   const navigate = useNavigate();
 
   const {

@@ -14,6 +14,8 @@ import { useMultas } from "../Hooks/useMultas";
 import { useCuotas } from "../Hooks/useCuotas";
 import { useHomeGastos } from "../Hooks/useHomeGastos";
 import { useHomeMultas } from "../Hooks/useHomeMultas";
+import { useHomeCuotas } from "../Hooks/useHomeCuotas";
+import { useHomePresupuesto } from "../Hooks/useHomePresupuesto";
 
 function Template() {
   const propietarios = usePropietarios();
@@ -26,6 +28,8 @@ function Template() {
   const cuotas = useCuotas();
   const gastosHome = useHomeGastos();
   const multasHome = useHomeMultas();
+  const cuotasHome = useHomeCuotas();
+  const presupuestoHome = useHomePresupuesto();
   return (
     <ResidenciaContext.Provider
       value={{
@@ -39,6 +43,8 @@ function Template() {
         cuotas,
         gastosHome,
         multasHome,
+        cuotasHome,
+        presupuestoHome,
       }}
     >
       <BrowserRouter>

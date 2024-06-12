@@ -25,9 +25,7 @@ function ChartLine(props) {
 
   const [gasto, setGasto] = useState(gastosHome.gastosLine);
 
-  const cuota = [
-    3000, 4000, 1000, 6000, 5000, 8000, 7444, 7000, 5000, 7000, 2500, 1000,
-  ];
+  const [cuota, setCuota] = useState(props.cuotasMeses);
 
   const options = {
     scales: {

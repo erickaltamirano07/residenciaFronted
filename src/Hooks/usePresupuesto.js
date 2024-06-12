@@ -50,7 +50,7 @@ const usePresupuesto = () => {
     }
 
 
-    const removePresupuesto = (payload) => {
+    const removePresupuesto = (payload, contexto) => {
 
          const requestOptions = {
             method: 'POST',
@@ -62,11 +62,12 @@ const usePresupuesto = () => {
                     const newItem = [...presupuestos];
                     const x = newItem.filter(item => item.id !== payload.id);
                 setPresupuesto(x);
+                contexto.actualizarPresupuesto();
                 alert("Elemento eliminado")
             });       
     }
 
- const postPresupuesto = (payload) => {
+ const postPresupuesto = (payload, contexto) => {
         
         const requestOptions = {
             method: 'POST',
@@ -87,12 +88,14 @@ const usePresupuesto = () => {
             .then(data => {                
                     let newItem=[...presupuestos];
                     newItem.push(data);
-                    setPresupuesto(newItem);
-                    console.log(data)
-            });        
+                setPresupuesto(newItem);
+                contexto.actualizarPresupuesto();
+            });
+     
+     
     }
 
-    const putPresupuesto = (id, payload) => {       
+    const putPresupuesto = (id, payload, contexto) => {       
         
         const requestOptions = {
             method: 'POST',
@@ -119,6 +122,7 @@ const usePresupuesto = () => {
                 newItems[presupuestoIndex].parcial = data.parcial;
                 newItems[presupuestoIndex].anio = data.anio;                
                 setPresupuesto(newItems);
+                contexto.actualizarPresupuesto();
                 alert("Elemento modificado")
             });        
     }

@@ -3,11 +3,13 @@ import { ResidenciaContext } from "../Context/residenciaContext";
 import { FormPresupuesto } from "../Components/formPresupuesto";
 
 function NewPresupuesto() {
-  const { presupuestos } = useContext(ResidenciaContext);
+  const { presupuestos, presupuestoHome } = useContext(ResidenciaContext);
   return (
     <FormPresupuesto
       label="Registar Presupuesto"
-      submitEvent={(text) => presupuestos.postPresupuesto(text)}
+      submitEvent={(text) =>
+        presupuestos.postPresupuesto(text, presupuestoHome)
+      }
     />
   );
 }

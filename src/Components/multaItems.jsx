@@ -4,11 +4,11 @@ import { PencilSquareIcon, TrashIcon } from "@heroicons/react/16/solid";
 import { NavLink } from "react-router-dom";
 
 function MultasItems({ item }) {
-  const { multas } = useContext(ResidenciaContext);
+  const { multas, multasHome } = useContext(ResidenciaContext);
   const fechas = item.fecha.split("T");
 
   const handleClick = (item) => {
-    multas.removeMultas(item);
+    multas.removeMultas(item, multasHome);
   };
 
   return (

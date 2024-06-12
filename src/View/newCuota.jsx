@@ -22,12 +22,16 @@ function NewCuota() {
       data.propietario = parseInt(item.id);
       cuotas.postCuota(data);
     });
-    cuotas.getCuotas();
-    setEstado("Enviando...");
-    cuotas.getCuotas();
 
-    navigate("/cuotas");
+    setEstado("Enviando...");
+    const timer = setTimeout(() => {
+      cuotas.getCuotas();
+      setEstado("Enviar");
+      navigate("/cuotas");
+    }, 5000);
+    return () => clearTimeout(timer);
   };
+
   const onCancel = () => {
     navigate("/cuotas");
   };
