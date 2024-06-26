@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { FormCuota } from "../Components/formCuota";
 
 function EditCuota() {
-  const { cuotas } = useContext(ResidenciaContext);
+  const { cuotas, cuotasHome } = useContext(ResidenciaContext);
   const { id } = useParams();
 
   let cuota = [cuotas.cuotas.find((element) => element.id === parseInt(id))];
@@ -19,7 +19,7 @@ function EditCuota() {
       pagado={cuota.pagado}
       valor={cuota.valor}
       propietario={cuota.propietario}
-      submitEvent={(text) => cuotas.putCuota(parseInt(id), text)}
+      submitEvent={(text) => cuotas.putCuota(parseInt(id), text, cuotasHome)}
     />
   );
 }

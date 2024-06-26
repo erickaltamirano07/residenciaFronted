@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Layout } from "../Components/layout";
 
 function NewCuota() {
-  const { cuotas, propietarios } = useContext(ResidenciaContext);
+  const { cuotas, propietarios, cuotasHome } = useContext(ResidenciaContext);
   const [pagado, setPagado] = useState(false);
   const [estado, setEstado] = useState("Enviar");
   const navigate = useNavigate();
@@ -26,6 +26,7 @@ function NewCuota() {
     setEstado("Enviando...");
     const timer = setTimeout(() => {
       cuotas.getCuotas();
+      cuotasHome.actulizarCuotas();
       setEstado("Enviar");
       navigate("/cuotas");
     }, 5000);

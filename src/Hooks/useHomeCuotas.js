@@ -44,6 +44,7 @@ const useHomeCuotas = () => {
       .then((data) => setCuotas(data.filter((x) => x.anio == y)));
   }, []);
 
+
   if (cuotas.length > 1) {
     cuotasLine = [];
     const eneroTemp = cuotas.filter((x) => x.mes === "Enero");    
@@ -85,15 +86,33 @@ const useHomeCuotas = () => {
       noviembre2.reduce((a, b) => a + b,0),
       diciembre2.reduce((a, b) => a + b,0)
       );
-     totalCuotas = cuotasLine.reduce((a, b) => a + b,0);
+    totalCuotas = cuotasLine.reduce((a, b) => a + b, 0);
+    
   } else{
       cuotasLine = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
       totalCuotas = 0;
   }
 
+  const actulizarCuotas  =() => {
+     var y = new Date().getFullYear();
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        targetMethod: "GET",
+      }),
+    };
+
+    fetch(uri, requestOptions)
+      .then((response) => response.json())
+      .then((data) => setCuotas(data.filter((x) => x.anio == y)));
+  }
+
   return {
       cuotasLine,
-      totalCuotas
+      totalCuotas,
+      actulizarCuotas 
   };
 };
 

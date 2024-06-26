@@ -51,7 +51,7 @@ const useCuotas=()=>{
     }
 
 
-    const removeCuotas = (payload) => {
+    const removeCuotas = (payload, context) => {
 
          const requestOptions = {
             method: 'POST',
@@ -63,6 +63,7 @@ const useCuotas=()=>{
                     const newItem = [...cuotas];
                     const x = newItem.filter(item => item.id !== payload.id);
                 setCuotas(x);
+                context.actulizarCuotas();
                 alert("Elemento eliminado")
             });       
     }
@@ -91,7 +92,7 @@ const useCuotas=()=>{
                     
     }
 
-    const putCuota = (id, payload) => {       
+    const putCuota = (id, payload, context) => {       
         
         const requestOptions = {
             method: 'POST',
@@ -122,6 +123,7 @@ const useCuotas=()=>{
                 newItems[cuotaIndex].propietario = data.propietario;
                 newItems[cuotaIndex].valor = data.valor;
                 setCuotas(newItems);
+                context.actulizarCuotas();
                 alert("Elemento modificado")
             });        
     }

@@ -4,10 +4,10 @@ import { PencilSquareIcon, TrashIcon } from "@heroicons/react/16/solid";
 import { NavLink } from "react-router-dom";
 
 function CuotasItems({ item }) {
-  const { cuotas } = useContext(ResidenciaContext);
+  const { cuotas, cuotasHome } = useContext(ResidenciaContext);
 
   const handleClick = (item) => {
-    cuotas.removeCuotas(item);
+    cuotas.removeCuotas(item, cuotasHome);
   };
 
   return (
