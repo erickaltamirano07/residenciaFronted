@@ -12,7 +12,7 @@ function EditMulta() {
 
   return (
     <FormMulta
-      label="Editar Presupuesto"
+      label="Editar Multa"
       id={multa.id}
       total={multa.total}
       motivo={multa.motivo}
